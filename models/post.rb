@@ -3,7 +3,7 @@ class Post
 
   property :id, Serial
   property :title, String, required: true
-  property :content, String
+  property :content, Text
 
   belongs_to :user
   has n, :comment
