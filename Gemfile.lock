@@ -150,3 +150,6 @@ DEPENDENCIES
   sinatra-partial
   slim
   tilt (~> 1.4.1)
+
+BUNDLED WITH
+  1.10.0.pre.1
