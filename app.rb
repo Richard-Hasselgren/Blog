@@ -48,7 +48,17 @@ class App < Sinatra::Base
 
   post '/post/create' do
     create = Post.create(title: params['title'], content: params['content'])
-    redirect '/main'
+    if session[:user]
+      @user = User.get(session[:user])
+      @post = create
+      redirect '/main'
+    else
+      redirect '/wrong'
+    end
+  end
+
+  get '/wrong' do
+    slim :wrong
   end
 
 end
