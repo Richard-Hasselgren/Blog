@@ -40,8 +40,15 @@ class App < Sinatra::Base
     if session[:user]
       @user = User.get(session[:user])
       @posts = @user.posts
+    else
+      redirect '/'
     end
     slim :main
+  end
+
+  post '/post/create' do
+    create = Post.create(title: params['title'], content: params['content'])
+    redirect '/main'
   end
 
 end
