@@ -19,4 +19,14 @@ class App < Sinatra::Base
     end
   end
 
+  get '/sign_up' do
+    slim :sign_up
+  end
+
+  post '/sign_up' do
+    if params['pass'].length <= 3
+      redirect '/sign_up'
+    end
+  end
+
 end
