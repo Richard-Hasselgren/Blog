@@ -36,4 +36,12 @@ class App < Sinatra::Base
     end
   end
 
+  get '/main' do
+    if session[:user]
+      @user = User.get(session[:user])
+      @posts = @user.posts
+    end
+    slim :main
+  end
+
 end

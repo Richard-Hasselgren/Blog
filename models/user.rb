@@ -6,6 +6,6 @@ class User
   property :pass, BCryptHash, required: true
 
 
-  has n, :post
-  has n, :comment
+  has n, :posts
+  has n, :comments
 end
