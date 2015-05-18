@@ -5,4 +5,7 @@ class User
   property :uname, String, required: true, unique: true
   property :pass, BCryptHash, required: true
 
+
+  has n, :post
+  
 end
