@@ -25,6 +25,13 @@ class App < Sinatra::Base
 
   post '/sign_up' do
     if params['pass'].length <= 3
+      redirect '/sign'
+    end
+    sign_up = User.create(uname: params['uname'].downcase, pass: params['pass'])
+    if sign_up && sign_up.valid?
+      session[:user] = sign_up.id
+      redirect '/main'
+    else
       redirect '/sign_up'
     end
   end
