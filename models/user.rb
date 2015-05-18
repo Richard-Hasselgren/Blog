@@ -7,5 +7,5 @@ class User
 
 
   has n, :post
-  
+  has n, :comment
 end

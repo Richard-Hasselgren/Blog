@@ -6,4 +6,5 @@ class Post
   property :content, String
 
   belongs_to :user
+  has n, :comment
 end
