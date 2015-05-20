@@ -47,11 +47,31 @@ class App < Sinatra::Base
   end
 
   post '/post/create' do
-    create = Post.create(title: params['title'], content: params['content'])
     if session[:user]
       @user = User.get(session[:user])
-      @post = create
+      Post.create(title: params['title'], content: params['content'], user: @user )
       redirect '/main'
+    else
+      redirect '/wrong'
+    end
+  end
+
+  get '/post/:id' do |post_id|
+    if session[:user]
+      @user = User.get(session[:user])
+      @post = Post.get(post_id)
+      @comments = @post.comments
+      slim :post
+    else
+      redirect '/wrong'
+    end
+  end
+
+  post '/post/:id/comment' do |post_id|
+    if session[:user]
+      @user = User.get(session[:user])
+      Comment.create(comment: params['comment'], user: @user, post_id: post_id)
+      redirect "/post/#{post_id}"
     else
       redirect '/wrong'
     end

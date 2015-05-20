@@ -1,2 +1,10 @@
+h3= @post.content
+
 ul
-  - for post
+  - for comment in @comments
+    li= comment.comment
+
+form action="/post/#{@post.id}/comment" method='post'
+  input type='text' name='comment'
+  br
+  button type='submit' kommentera
